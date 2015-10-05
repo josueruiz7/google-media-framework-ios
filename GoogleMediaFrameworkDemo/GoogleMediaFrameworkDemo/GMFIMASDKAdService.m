@@ -133,11 +133,14 @@
       // Break ommitted on purpose.
     case kIMAAdEvent_RESUME:
       // When an ad starts, take over control of the video player until the ad completes.
-      [self.videoPlayerController.playerOverlayView showPauseButton];
+      if (_hasVideoPlayerControl)
+          [self.videoPlayerController.playerOverlayView showPauseButton];
       [self showPlayerControls];
       break;
     case kIMAAdEvent_PAUSE:
-      [self.videoPlayerController.playerOverlayView showPlayButton];
+      if (_hasVideoPlayerControl)
+          [self.videoPlayerController.playerOverlayView showPlayButton];
+      
       [self showPlayerControls];
       break;
     case kIMAAdEvent_ALL_ADS_COMPLETED:
